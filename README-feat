@@ -1,0 +1,6 @@
+This is a mirror of the python module for selenium.
+
+This mirror was cloned with:
+
+git svn clone http://selenium.googlecode.com/svn/trunk/py python-selenium
+
