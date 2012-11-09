@@ -64,9 +64,15 @@ class WebDriver(RemoteWebDriver):
             RemoteWebDriver.__init__(self,
                 command_executor=self.service.service_url,
                 desired_capabilities=desired_capabilities)
-        except:
-            self.quit()
-            raise WebDriverException("The Driver was not able to start.")
+        except Exception, e:
+            try:
+                self.quit()
+                raise WebDriverException(
+                    "The Driver was not able to start or communicate (%r)." % e)
+            except:
+                raise WebDriverException(
+                    "The Driver was not able to start, communicate, or quit " \
+                    "(%r)." % e)
 
     def quit(self):
         """
