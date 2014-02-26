@@ -82,8 +82,10 @@ class Service(object):
         import urllib2
         try:
             urllib2.urlopen("http://127.0.0.1:%d/shutdown" % self.port)
+
+            # make sure that shutdown worked by testing the port has gone away
             count = 0
-            while not utils.is_connectable(self.port):
+            while utils.is_connectable(self.port):
                 if count == 30:
                    break 
                 count += 1
